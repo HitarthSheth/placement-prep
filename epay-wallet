@@ -1,0 +1,66 @@
+class Epay:
+    def __init__(self, id, userName, emailId, walletBalance):
+        self.id = id
+        self.userName = userName
+        self.emailId = emailId
+        self.walletBalance = walletBalance
+    
+    def makePayment(self, billAmount):
+        if billAmount <= self.walletBalance:
+            self.walletBalance -= billAmount
+            return True
+        else:
+            return False
+    
+    def getId(self):
+        return self.id
+    
+    def getUserName(self):
+        return self.userName
+    
+    def getEmailId(self):
+        return self.emailId
+    
+    def getWalletBalance(self):
+        return self.walletBalance
+
+
+class PremiumUser(Epay):
+    def __init__(self, id, userName, emailId, walletBalance, rewardPoints):
+        super().__init__(id, userName, emailId, walletBalance)
+        self.rewardPoints = rewardPoints
+    
+    def makePayment(self, billAmount):
+        if super().makePayment(billAmount):
+            self.rewardPoints += billAmount * 0.1
+            return True
+        else:
+            return False
+    
+    def getRewardPoints(self):
+        return self.rewardPoints
+
+########################################
+
+if __name__ == "__main__":
+    id = input("Enter ID: ")
+    userName = input("Enter username: ")
+    emailId = input("Enter email ID: ")
+    walletBalance = float(input("Enter wallet balance: "))
+    
+    if id.startswith("PR"):
+        user = PremiumUser(id, userName, emailId, walletBalance, 0.0)
+    else:
+        user = Epay(id, userName, emailId, walletBalance)
+    
+    billAmount = float(input("Enter bill amount: "))
+    
+    if user.makePayment(billAmount):
+        print("congratulations! Your Payment is successful!")
+    else:
+        print("Payment failed due to insufficient funds.")
+    
+    print("The Wallet Balance is:", user.getWalletBalance())
+    
+    if isinstance(user, PremiumUser):
+        print("You have earned following REWARD POINTS for this transaction:", user.getRewardPoints())
