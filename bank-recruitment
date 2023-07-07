@@ -1,0 +1,52 @@
+class Bank:
+    def __init__(self):
+        self.name = ""
+        self.jobProfile = ""
+        self.age = 0
+
+    def setName(self, applicantName):
+        if not applicantName.isalpha():
+            print("Invalid name")
+            return
+        self.name = applicantName
+
+    def setJobProfile(self, jobProfile):
+        if not jobProfile.isalpha():
+            print("Invalid Role")
+            return
+        self.jobProfile = jobProfile
+
+    def setAge(self, age):
+        self.age = int(age)
+
+    def getName(self):
+        print("Applicant Name: ", self.name)
+
+    def getJobProfile(self):
+        print("Applicant Job Profile: ", self.jobProfile)
+
+    def getAge(self):
+        print("Applicant Age: ", self.age)
+
+obj = Bank()
+applicantName = input("=== Enter name: ")
+obj.setName(applicantName)
+
+jobProfile = input("=== Enter job profile: ")
+obj.setJobProfile(jobProfile)
+
+age = input("=== Enter age: ")
+obj.setAge(age)
+
+obj.getName()
+obj.getJobProfile()
+obj.getAge()
+ 
+ 
+ ###
+ class validate(bank):
+    def val1(self,name):
+        if len(name) == 0
+            return false 
+        else:
+            return True
